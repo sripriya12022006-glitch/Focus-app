@@ -83,3 +83,34 @@ updateTimer();
 
 </body>
 </html>
+<script>
+function askPermission() {
+  Notification.requestPermission().then(permission => {
+    if (permission === "granted") {
+      alert("Notifications enabled 😈 Stay focused!");
+    }
+  });
+}
+  </script>
+<script>
+function askPermission() {
+  Notification.requestPermission().then(permission => {
+    if (permission === "granted") {
+      alert("Notifications enabled 😈 Stay focused!");
+    }
+  });
+}
+</script>
+<button onclick="askPermission()">Enable Notifications 🔔</button>
+<script>
+function sendReminder() {
+  if (Notification.permission === "granted") {
+    new Notification("🚫 Focus Priya!", {
+      body: "Stop scrolling. Go study NOW 😤",
+    });
+  }
+}
+
+// every 10 minutes reminder
+setInterval(sendReminder, 600000);
+</script>
