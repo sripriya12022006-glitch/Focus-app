@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Focus App - Priya</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: Arial; text-align: center; padding: 20px; background: #f5f5f5; }
+    h1 { color: #333; }
+    input { padding: 10px; width: 60%; }
+    button { padding: 10px; margin: 5px; }
+    .card { background: white; padding: 15px; margin: 15px; border-radius: 10px; }
+  </style>
+</head>
+<body>
+
+<h1>🚀 Focus Mode - Priya</h1>
+
+<div class="card">
+  <h2>🎯 Your Goals</h2>
+  <input id="goalInput" placeholder="Enter goal...">
+  <button onclick="addGoal()">Add</button>
+  <ul id="goalList"></ul>
+</div>
+
+<div class="card">
+  <h2>⏳ Focus Timer</h2>
+  <h3 id="timer">25:00</h3>
+  <button onclick="startTimer()">Start</button>
+  <button onclick="pauseTimer()">Pause</button>
+  <button onclick="resetTimer()">Reset</button>
+</div>
+
+<div class="card">
+  <h2>🚫 Reminder</h2>
+  <p>Stay away from Instagram & YouTube!</p>
+</div>
+
+<script>
+let time = 1500;
+let running = false;
+let interval;
+
+function updateTimer() {
+  let min = Math.floor(time / 60);
+  let sec = time % 60;
+  document.getElementById("timer").innerText =
+    min + ":" + (sec < 10 ? "0" : "") + sec;
+}
+
+function startTimer() {
+  if (!running) {
+    running = true;
+    interval = setInterval(() => {
+      if (time > 0) {
+        time--;
+        updateTimer();
+      }
+    }, 1000);
+  }
+}
+
+function pauseTimer() {
+  running = false;
+  clearInterval(interval);
+}
+
+function resetTimer() {
+  time = 1500;
+  updateTimer();
+}
+
+function addGoal() {
+  let input = document.getElementById("goalInput");
+  let li = document.createElement("li");
+  li.innerText = input.value;
+  document.getElementById("goalList").appendChild(li);
+  input.value = "";
+}
+
+updateTimer();
+</script>
+
+</body>
+</html>
